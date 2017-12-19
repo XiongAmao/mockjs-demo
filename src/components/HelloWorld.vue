@@ -3,6 +3,14 @@
     <h1>Mockjs + json-server</h1>
     <button @click="test"> try</button>
     <p>the data is : {{ apiData }}</p>
+    <div>
+      <button @click="test2">try two</button>
+    </div>
+    <div>
+      <p> 作者 : {{ article.name }}</p>
+      <p> 创建时间 : {{ article.createTime }}</p>
+      <p> 文章 : {{ article.article }} </p>
+    </div>
   </div>
 </template>
 
@@ -11,7 +19,8 @@ export default {
   name: "HelloWorld",
   data() {
     return {
-      apiData: ""
+      apiData: '',
+      article: ''
     };
   },
   methods: {
@@ -24,7 +33,21 @@ export default {
         .catch(err => {
           console.log(err);
         });
+    },
+    test2(){
+      this.$axios
+      .get('/api/article')
+      .then(res => {
+        console.log(res)
+        this.article = res.data;
+      })
+      .catch(err => {
+        console.log(err);
+      })
     }
+  },
+  created() {
+    this.test2()
   }
 };
 </script>

@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Axios from 'axios'
-import mockdata from '../mock/mockdata.js' // 跑数据了
+// import mockdata from '../mock/mockdata.js' // 跑数据了
 
 Vue.prototype.$axios = Axios
 Vue.config.productionTip = false
