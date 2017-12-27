@@ -4,13 +4,25 @@
 
 const path = require('path')
 
+const mockRouter = require('../src/mock/mockdata')
+const jsonServer = require('../src/mock/json-server.js')
 module.exports = {
   dev: {
 
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      // '/api/*': {
+      //   target: 'http://localhost',
+      //   changeOrigin: true,
+      //   pathRerite: function (path, req) {
+      //     // console.log(path)
+      //     return path.replace('/api', '/base/api')
+      //   }
+      // }
+      // proxy 跟 before会冲突，会先调用before读取请求，然后就没有转发了。。。
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
@@ -20,7 +32,7 @@ module.exports = {
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
+
     /**
      * Source Maps
      */
@@ -39,6 +51,11 @@ module.exports = {
     // In our experience, they generally work as expected,
     // just be aware of this issue when enabling this option.
     cssSourceMap: false,
+    before: function(app){
+      app.use('/api', mockRouter)
+      // jsonServer(app)
+      // 不能在这里使用中间件，对于json-server而言，它就是真的开了一个server会顶掉dev-server
+    }
   },
 
   build: {

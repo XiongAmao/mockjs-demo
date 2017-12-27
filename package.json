@@ -1,7 +1,7 @@
 {
   "name": "mockjs-demo",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "A mockjs + json-server project",
   "author": "XiongAmao <onycat@live.cn>",
   "private": true,
   "scripts": {

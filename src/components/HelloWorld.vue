@@ -26,7 +26,7 @@ export default {
   methods: {
     test() {
       this.$axios
-        .get("/api/data")
+        .get('/test/json')
         .then(res => {
           this.apiData = res.data;
         })
@@ -34,16 +34,16 @@ export default {
           console.log(err);
         });
     },
-    test2(){
+    test2() {
       this.$axios
-      .get('/api/article')
-      .then(res => {
-        console.log(res)
-        this.article = res.data;
-      })
-      .catch(err => {
-        console.log(err);
-      })
+        .get('/api/article')
+        .then(res => {
+          console.log(res)
+          this.article = res.data;
+        })
+        .catch(err => {
+          console.log(err);
+        })
     }
   },
   created() {
